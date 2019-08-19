@@ -134,7 +134,7 @@ ld_modules_t libhook_get_modules() {
 unsigned libhook_patch_address( unsigned addr, unsigned newval ) {
     unsigned original = -1;
     size_t pagesize = sysconf(_SC_PAGESIZE);
-    const void *aligned_pointer = (const void*)(addr & ~(pagesize - 1));
+    void *aligned_pointer = (void*)(addr & ~(pagesize - 1));
 
     mprotect(aligned_pointer, pagesize, PROT_WRITE | PROT_READ);
 
